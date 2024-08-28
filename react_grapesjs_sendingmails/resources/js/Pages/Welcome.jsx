@@ -1,3 +1,4 @@
+import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { Link, Head } from "@inertiajs/react";
 
 export default function Welcome({ auth, laravelVersion, phpVersion }) {
@@ -11,6 +12,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
             ?.classList.add("!flex-row");
         document.getElementById("background")?.classList.add("!hidden");
     };
+   
 
     return (
         <body className="overflow-x-hidden antialiased">
@@ -61,7 +63,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                 id="menu-toggle"
                             />
 
-                            <div
+                            {/* <div
                                 className="hidden md:flex md:items-center md:w-auto w-full order-3 md:order-1"
                                 id="menu"
                             >
@@ -92,9 +94,9 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                         </li>
                                     </ul>
                                 </nav>
-                            </div>
-
-                            <div
+                            </div> */}
+                            {!auth.user ? (
+                                <div
                                 className="order-2 md:order-3 flex flex-wrap items-center justify-end mr-0 md:mr-4"
                                 id="nav-content"
                             >
@@ -113,6 +115,24 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                     </a>
                                 </div>
                             </div>
+                            ):(
+                            //     <div
+                            //     className="order-2 md:order-3 flex flex-wrap items-center justify-end mr-0 md:mr-4"
+                            //     id="nav-content"
+                            // >
+                            //     <div className="auth flex items-center w-full md:w-full">
+                            //         <a
+                            //             href={route("logout")}
+                            //             className="bg-transparent text-gray-800  p-2 rounded border border-gray-300 mr-4 hover:bg-gray-100 hover:text-gray-700"
+                            //         >
+                            //             Log Out
+                            //         </a>
+                            //     </div>
+                            // </div>
+                            <Authenticated {
+                                ...auth
+                            }/> 
+                            )}
                         </div>
                     </nav>
 
@@ -292,7 +312,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                             </g>
                         </svg>
                     </div>
-                    <div className="relative z-50 flex flex-col items-end justify-center w-full h-full lg:w-1/2 ms:pl-10">
+                    <div className="relative z-0 flex flex-col items-end justify-center w-full h-full lg:w-1/2 ms:pl-10">
                         <div className="container relative left-0 w-full max-w-4xl lg:absolute xl:max-w-6xl lg:w-screen">
                             <img
                                 src="https://cdn.devdojo.com/images/september2020/macbook-mockup.png"
